@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens — Skillfly brand system.
+ * Exposed as Tailwind theme variables so utilities like `bg-primary`,
+ * `text-ink`, `font-display` are available across the app.
+ */
+@theme {
+  --color-primary: #503dc7;
+  --color-primary-dark: #2b1491;
+  --color-primary-mid: #331ba8;
+  --color-primary-darkest: #1b0f5c;
+
+  --color-ink: #14103a;
+  --color-muted: #55507a;
+  --color-muted-light: #8b87a8;
+
+  --color-surface: #f6f5fc;
+  --color-lavender: #edeafb;
+  --color-star: #f5a524;
+  --color-whatsapp: #25d366;
+
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+
+  /* Reveal / decorative animations ported from the original site */
+  --animate-rise: sf-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade: sf-fade 0.8s ease both;
+  --animate-pop: sf-pop 0.8s ease both;
+  --animate-slidein: sf-slidein 0.25s ease both;
+  --animate-float: sf-float 6s ease-in-out infinite;
+  --animate-drift: sf-drift 18s ease-in-out infinite;
+  --animate-pulse-ring: sf-pulse 2.6s ease-out infinite;
+  --animate-shine: sf-shine 9s linear infinite alternate;
+}
+
+@keyframes sf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sf-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes sf-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sf-slidein {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes sf-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.12);
+  }
+}
+@keyframes sf-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+}
+@keyframes sf-shine {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #ffffff;
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  /*
+   * Scroll-triggered reveal. Uses the modern scroll-driven animations API
+   * where supported and degrades gracefully (content stays visible) elsewhere.
+   */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: sf-rise 0.8s ease both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 26%;
+    }
+    .reveal-pop {
+      animation: sf-pop 0.8s ease both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
