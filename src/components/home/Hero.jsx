@@ -19,11 +19,10 @@ export default function Hero() {
           Calicut · Online &amp; Offline
         </span>
         <h1 className="mt-6.5 animate-[sf-rise_0.9s_cubic-bezier(0.2,0.7,0.2,1)_0.08s_both] font-display text-[clamp(38px,6.4vw,80px)] font-extrabold leading-[1.02] text-white">
-          India's No.3 Practical
+          India's No.1 Practical
           <br />
           Learning Platform
         </h1>
-        <p>done by munavarali</p>
         <p className="mx-auto mt-6 max-w-[660px] animate-[sf-rise_0.9s_cubic-bezier(0.2,0.7,0.2,1)_0.2s_both] text-[clamp(16px,1.7vw,20px)] leading-relaxed text-white/85">
           Hands-on training in digital marketing, HR and foreign accounting — built around live
           projects, industry mentors and real hiring partners. Learn the work, then get placed —
