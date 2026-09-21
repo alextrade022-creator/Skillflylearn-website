@@ -1,14 +1,18 @@
-name: Build & deploy to Hostinger
+name: Build & publish site
 
-# Runs on every push to main: builds the Vite app and uploads the
-# built dist/ folder to Hostinger's public_html over FTP.
+# On every push to main: build the Vite app and publish the built dist/
+# output to the "deploy" branch. Point Hostinger's Git deployment at the
+# "deploy" branch so it serves the built site (not the raw source).
 on:
   push:
     branches: [main]
-  workflow_dispatch: # lets you trigger it manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write # needed to push the built files to the deploy branch
 
 jobs:
-  deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -26,13 +30,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Publish dist/ to the deploy branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # Contents of dist/ are uploaded (note the trailing slash).
-          local-dir: ./dist/
-          # Hostinger's web root. Confirm this path in hPanel > FTP Accounts.
-          server-dir: /public_html/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: deploy
+          force_orphan: true
