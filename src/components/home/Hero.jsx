@@ -1,6 +1,5 @@
 import Container from '../ui/Container';
 import Button from '../ui/Button';
-import ImageSlot from '../ui/ImageSlot';
 import { HERO_STATS } from '../../data/highlights';
 
 /** Full-viewport home hero with headline, CTAs and a stats strip. */
@@ -8,9 +7,14 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col justify-end overflow-hidden bg-primary-dark">
       <div className="absolute inset-0">
-        <ImageSlot placeholder="Drop the hero banner image (students / classroom, wide)" />
+        <img
+          src="/images/ceremony-2026.jpg"
+          alt="Skillfly students at a ceremony"
+          className="h-full w-full object-cover"
+        />
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(140deg,rgba(43,20,145,0.94)_0%,rgba(51,27,168,0.88)_45%,rgba(80,61,199,0.78)_100%)]" />
+      {/* Purple brand tint so the ceremony photo shows through while the text stays readable */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(140deg,rgba(27,15,92,0.82)_0%,rgba(43,20,145,0.70)_45%,rgba(80,61,199,0.60)_100%)]" />
       <div className="pointer-events-none absolute -right-[120px] -top-[160px] h-[520px] w-[520px] animate-[sf-drift_16s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgba(80,61,199,0.75),transparent_68%)] blur-[20px]" />
       <div className="pointer-events-none absolute -bottom-[180px] -left-[140px] h-[460px] w-[460px] animate-[sf-drift_21s_ease-in-out_infinite_reverse] rounded-full bg-[radial-gradient(circle,rgba(120,104,231,0.55),transparent_70%)] blur-[24px]" />
 
