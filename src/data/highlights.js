@@ -59,9 +59,3 @@ export const VALUES = [
     text: 'Small batches and an alumni network that keeps referring, mentoring and hiring each other.',
   },
 ];
-
-/** Number of placement-proof tiles to render (matches the original 4–14 range). */
-export const PLACEMENT_COUNT = 14;
-
-/** Masonry heights cycled through on the placements gallery. */
-export const PLACEMENT_HEIGHTS = ['300px', '240px', '340px', '260px', '310px', '230px', '290px'];

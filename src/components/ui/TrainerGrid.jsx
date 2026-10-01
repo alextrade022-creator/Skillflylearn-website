@@ -14,7 +14,7 @@ export default function TrainerGrid({ trainers }) {
           className="reveal-pop overflow-hidden rounded-3xl border border-ink/10 bg-white transition-all duration-300 hover:-translate-y-2.5 hover:border-primary/40 hover:shadow-[0_26px_56px_rgba(43,20,145,0.16)]"
         >
           <div className="relative h-[270px] bg-lavender">
-            <ImageSlot placeholder="Trainer photo" />
+            <ImageSlot src={trainer.image} alt={trainer.name} placeholder="Trainer photo" />
           </div>
           <div className="p-5">
             <h3 className="font-display text-[19px] font-bold">{trainer.name}</h3>

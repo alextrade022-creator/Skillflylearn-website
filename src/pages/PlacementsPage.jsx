@@ -2,13 +2,9 @@ import PageHero from '../components/ui/PageHero';
 import Container from '../components/ui/Container';
 import ImageSlot from '../components/ui/ImageSlot';
 import ReviewGrid from '../components/ui/ReviewGrid';
-import { PLACEMENT_COUNT, PLACEMENT_HEIGHTS, PLACEMENT_STATS } from '../data/highlights';
+import { PLACEMENT_STATS } from '../data/highlights';
 import { REVIEWS_PAGE } from '../data/testimonials';
-
-const gallery = Array.from({ length: PLACEMENT_COUNT }, (_, i) => ({
-  slot: `placement-p-${i + 1}`,
-  height: PLACEMENT_HEIGHTS[i % PLACEMENT_HEIGHTS.length],
-}));
+import { PLACED_STUDENTS } from '../data/placedStudents';
 
 export default function PlacementsPage() {
   return (
@@ -48,14 +44,17 @@ export default function PlacementsPage() {
           <h2 className="font-display text-[clamp(26px,3.2vw,38px)] font-extrabold">
             Placement gallery
           </h2>
-          <div className="mt-7 [column-gap:18px] [columns:1] sm:[columns:2] lg:[columns:3] xl:[columns:4]">
-            {gallery.map((item) => (
+          <div className="mt-7 grid grid-cols-2 gap-4.5 md:grid-cols-3 lg:grid-cols-4">
+            {PLACED_STUDENTS.map((student) => (
               <div
-                key={item.slot}
-                className="mb-4.5 overflow-hidden rounded-[18px] bg-lavender transition-transform duration-300 [break-inside:avoid] hover:scale-[1.02]"
-                style={{ height: item.height }}
+                key={student.slot}
+                className="group relative h-[300px] overflow-hidden rounded-[18px] bg-lavender transition-transform duration-300 hover:scale-[1.02]"
               >
-                <ImageSlot placeholder="Placement proof" />
+                <ImageSlot src={student.image} alt={student.name} placeholder="Placement proof" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-darkest/90 to-transparent p-4 pt-10">
+                  <div className="font-display text-base font-bold text-white">{student.name}</div>
+                  <div className="text-[13px] font-semibold text-white/75">{student.outcome}</div>
+                </div>
               </div>
             ))}
           </div>

@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import Container from '../ui/Container';
 import SectionHeading from '../ui/SectionHeading';
 import ImageSlot from '../ui/ImageSlot';
-import { STORIES } from '../../data/stories';
+import { PLACED_STUDENTS } from '../../data/placedStudents';
+
+const STORIES = PLACED_STUDENTS;
 
 const CARD_WIDTH = 320;
 const CARD_GAP = 26;
@@ -35,7 +37,7 @@ export default function SuccessStories() {
                 className="w-[320px] flex-none rounded-3xl bg-white p-5 shadow-[0_18px_44px_rgba(43,20,145,0.1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_26px_60px_rgba(43,20,145,0.18)]"
               >
                 <div className="relative h-[300px] overflow-hidden rounded-[18px] bg-lavender">
-                  <ImageSlot placeholder="Student photo" />
+                  <ImageSlot src={story.image} alt={story.name} placeholder="Student photo" />
                 </div>
                 <h3 className="mt-4.5 font-display text-[21px] font-bold">{story.name}</h3>
                 <p className="mt-1.5 text-[15px] font-semibold text-primary">{story.outcome}</p>
