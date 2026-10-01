@@ -6,6 +6,7 @@ import TrainersSection from '../components/home/TrainersSection';
 import CoursesPreview from '../components/home/CoursesPreview';
 import WhyUs from '../components/home/WhyUs';
 import PlacementsPreview from '../components/home/PlacementsPreview';
+import LifeAtSkillfly from '../components/home/LifeAtSkillfly';
 import Testimonials from '../components/home/Testimonials';
 import FaqSection from '../components/home/FaqSection';
 
@@ -21,6 +22,7 @@ export default function HomePage() {
       <CoursesPreview />
       <WhyUs />
       <PlacementsPreview />
+      <LifeAtSkillfly />
       <Testimonials />
       <FaqSection />
     </>

@@ -1,8 +1,11 @@
+import { useState } from 'react';
+
 /**
  * Image placeholder mirroring the original `<image-slot>` element.
  *
- * When a `src` is supplied it renders the image; otherwise it shows a labelled
- * dashed placeholder so content editors know what belongs in each slot.
+ * When a `src` is supplied it renders the image; otherwise (or if the image
+ * fails to load) it shows a labelled placeholder so content editors know what
+ * belongs in each slot.
  *
  * @param {string} [src] - Image source URL.
  * @param {string} [alt] - Accessible alt text.
@@ -18,15 +21,17 @@ export default function ImageSlot({
   fit = 'cover',
   className = '',
 }) {
+  const [failed, setFailed] = useState(false);
   const rounded = shape === 'circle' ? 'rounded-full' : '';
   const objectFit = fit === 'contain' ? 'object-contain' : 'object-cover';
 
-  if (src) {
+  if (src && !failed) {
     return (
       <img
         src={src}
         alt={alt}
         loading="lazy"
+        onError={() => setFailed(true)}
         className={`h-full w-full ${objectFit} ${rounded} ${className}`}
       />
     );
