@@ -35,7 +35,7 @@ export default function FoundersSection() {
         </div>
 
         <div className="relative h-[440px] overflow-hidden rounded-[30px] shadow-[0_30px_70px_rgba(0,0,0,0.32)]">
-          <ImageSlot placeholder="Drop the founders photo" />
+          <ImageSlot src="/images/founders.jpg" alt="Skillfly founders" placeholder="Drop the founders photo" />
         </div>
       </Container>
     </section>
